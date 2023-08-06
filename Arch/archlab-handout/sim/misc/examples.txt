@@ -1,0 +1,44 @@
+
+examples:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <sum_list>:
+   0:	f3 0f 1e fa          	endbr64 
+   4:	b8 00 00 00 00       	mov    $0x0,%eax
+   9:	eb 07                	jmp    12 <sum_list+0x12>
+   b:	48 03 07             	add    (%rdi),%rax
+   e:	48 8b 7f 08          	mov    0x8(%rdi),%rdi
+  12:	48 85 ff             	test   %rdi,%rdi
+  15:	75 f4                	jne    b <sum_list+0xb>
+  17:	c3                   	ret    
+
+0000000000000018 <rsum_list>:
+  18:	f3 0f 1e fa          	endbr64 
+  1c:	48 85 ff             	test   %rdi,%rdi
+  1f:	74 12                	je     33 <rsum_list+0x1b>
+  21:	53                   	push   %rbx
+  22:	48 8b 1f             	mov    (%rdi),%rbx
+  25:	48 8b 7f 08          	mov    0x8(%rdi),%rdi
+  29:	e8 00 00 00 00       	call   2e <rsum_list+0x16>
+  2e:	48 01 d8             	add    %rbx,%rax
+  31:	5b                   	pop    %rbx
+  32:	c3                   	ret    
+  33:	b8 00 00 00 00       	mov    $0x0,%eax
+  38:	c3                   	ret    
+
+0000000000000039 <copy_block>:
+  39:	f3 0f 1e fa          	endbr64 
+  3d:	b9 00 00 00 00       	mov    $0x0,%ecx
+  42:	eb 15                	jmp    59 <copy_block+0x20>
+  44:	48 8b 07             	mov    (%rdi),%rax
+  47:	48 89 06             	mov    %rax,(%rsi)
+  4a:	48 31 c1             	xor    %rax,%rcx
+  4d:	48 83 ea 01          	sub    $0x1,%rdx
+  51:	48 8d 76 08          	lea    0x8(%rsi),%rsi
+  55:	48 8d 7f 08          	lea    0x8(%rdi),%rdi
+  59:	48 85 d2             	test   %rdx,%rdx
+  5c:	7f e6                	jg     44 <copy_block+0xb>
+  5e:	48 89 c8             	mov    %rcx,%rax
+  61:	c3                   	ret    
